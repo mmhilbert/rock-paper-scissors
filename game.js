@@ -29,33 +29,43 @@
 
 let humanScore = 0
 let computerScore = 0
+
+let isRunning = true
+
 const options = ["rock", "paper", "scissors"];
 
+while (isRunning) {
+    const userChoice = prompt("Enter rock, paper, or scissors").toLowerCase;
 
+    if (!options.includes(userChoice)) {
+        alert("You need to choose rock, paper, or scissors")
+    }
+    
+    const randomIndex = Math.floor(Math.random()* options.length)
+    const computerChoice = options[randomIndex]
+    
 
-// check for invalid input 
-if (!options.includes(userChoice)) {
-    alert("You need to choose rock, paper, or scissors")
+    
+    if (
+        (userChoice === "rock" && computerChoice === "scissors") || 
+        (userChoice === "paper" && computerChoice === "scissors") || 
+        (userChoice === "scissors" && computerChoice === "paper")
+     ) {
+        alert("User wins!")
+        humanScore++
+    } else if (userChoice === computerChoice) {
+        alert("It's a tie!")
+    }
+    else {
+        alert("You Lost!")
+        computerScore++
+    }
+    
+    alert(`Human: ${humanScore} | Computer: ${computerScore}`)
+
+    isRunning = confirm(`Do you want to play again?`)
+
 }
 
-const randomIndex = Math.floor(Math.random()* options.length)
-const computerChoice = options[randomIndex]
-const userChoice = prompt("Enter rock, paper, or scissors").toLowerCase;
+alert("Goodbye")
 
-
-if (
-    (userChoice === "rock" && computerChoice === "scissors") || 
-    (userChoice === "paper" && computerChoice === "scissors") || 
-    (userChoice === "scissors" && computerChoice === "paper")
- ) {
-    alert("User wins!")
-    humanScore++
-} else if (userChoice === computerChoice) {
-    alert("It's a tie!")
-}
-else {
-    alert("You Lost!")
-    computerScore++
-}
-
-alert(`Human: ${humanScore} | Computer: ${computerScore}`)
